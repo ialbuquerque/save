@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Adicionar Receita"
+        android:id="@+id/addIncomeTitle"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nome:"
+        android:id="@+id/incomeNameTitle"
+        android:layout_below="@+id/addIncomeTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/expenseNamesList"
+        android:layout_alignTop="@+id/incomeNameTitle"
+        android:layout_alignLeft="@+id/addIncomeTitle"
+        android:layout_alignStart="@+id/addIncomeTitle"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="41dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_marginRight="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Valor:"
+        android:id="@+id/incomeValueTitle"
+        android:layout_below="@+id/expenseNamesList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/incomeValue"
+        android:layout_alignTop="@+id/incomeValueTitle"
+        android:layout_alignLeft="@+id/addIncomeTitle"
+        android:layout_alignStart="@+id/addIncomeTitle"
+        android:text="0.00"
+        android:layout_marginLeft="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:id="@+id/cancelIncomeButton"
+        android:layout_marginBottom="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/incomeValueTitle"
+        android:layout_alignStart="@+id/incomeValueTitle" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/saveIncomeButton"
+        android:layout_alignTop="@+id/cancelIncomeButton"
+        android:layout_alignBottom="@+id/cancelIncomeButton"
+        android:layout_alignRight="@+id/expenseNamesList"
+        android:layout_alignEnd="@+id/expenseNamesList" />
+
+</RelativeLayout>

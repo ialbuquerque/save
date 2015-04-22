@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Adicionar Despesa"
+        android:id="@+id/addExpenseTitle"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Nome:"
+        android:id="@+id/expenseNameTitle"
+        android:layout_below="@+id/addExpenseTitle"
+        android:layout_alignRight="@+id/addExpenseTitle"
+        android:layout_alignEnd="@+id/addExpenseTitle"
+        android:layout_marginRight="190dp"
+        android:layout_marginEnd="131dp"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/expenseNamesList"
+        android:layout_alignTop="@+id/expenseNameTitle"
+        android:layout_alignLeft="@+id/addExpenseTitle"
+        android:layout_alignStart="@+id/addExpenseTitle"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="41dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        android:layout_marginRight="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Valor:"
+        android:id="@+id/expenseValueTitle"
+        android:layout_below="@+id/expenseNamesList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/expenseValue"
+        android:text="0.00"
+        android:layout_alignTop="@+id/expenseValueTitle"
+        android:layout_alignLeft="@+id/expenseNamesList"
+        android:layout_alignStart="@+id/expenseNamesList" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:id="@+id/cancelExpenseButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/expenseValueTitle"
+        android:layout_alignStart="@+id/expenseValueTitle"
+        android:layout_marginBottom="47dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/saveExpenseButton"
+        android:layout_alignTop="@+id/cancelExpenseButton"
+        android:layout_alignRight="@+id/expenseValue"
+        android:layout_alignEnd="@+id/expenseValue" />
+
+</RelativeLayout>
