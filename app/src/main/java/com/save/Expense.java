@@ -1,0 +1,16 @@
+package com.save;
+
+/**
+ * Created by Daniel on 01/05/2015.
+ */
+public class Expense extends Operator {
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+}
