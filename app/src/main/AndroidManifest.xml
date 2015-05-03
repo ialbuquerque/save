@@ -16,6 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddAccount"
+            android:label="AddAcount" >
+        </activity>
+        <activity
+            android:name=".AddIncomeByMain"
+            android:label="@string/title_activity_add_income_by_main" >
+        </activity>
+        <activity
+            android:name=".AddExpenseByMain"
+            android:label="@string/title_activity_add_expense_by_main" >
+        </activity>
+        <activity
+            android:name=".MyGoals"
+            android:label="@string/title_activity_my_goals" >
+        </activity>
     </application>
 
 </manifest>

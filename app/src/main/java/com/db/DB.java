@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.save.Account;
-import com.save.Operator;
+import com.domain.Account;
+import com.domain.Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,10 +75,10 @@ public class DB {
 
                 Account a = new Account();
                 a.setName(cursor.getString(0));
-             /**for (Operator o : a.getOperators()) {
-                    a.setOperators(o.setName((cursor.getString(1)););
-                    a.setOperators(o.setValue(cursor.getDouble(2)););
-                } aqui deu algum erro de sintaxe com os ";" que aparentemente estão certos mas ta dando erro aqui, ativem e vejam se muda aí. */
+                /**for (Operator o : a.getOperators()) {
+                    a.setOperators(o.setName(cursor.getString(1));
+                    a.setOperators(o.setValue(cursor.getDouble(2));
+                } Aparentemente esse for está correto em sintaxe e em lógica, mas ele está dando erro por algum motivo, por isso deixo aqui comentado.*/
                 list.add(a);
           }while (cursor.moveToNext());
 

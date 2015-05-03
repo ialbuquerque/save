@@ -1,6 +1,5 @@
 package com.save;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,36 +7,23 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-public class MainActivity extends ActionBarActivity {
+public class AddExpenseByMain extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_expense_by_main);
     }
 
-    public void addAccount(View view){
-        Intent intent = new Intent(this, AddAccount.class);
-        startActivity(intent);
-    }
-    public  void myGoals(View view){
-        Intent intent = new Intent(this, MyGoals.class);
-        startActivity(intent);
-    }
-    public void addExpenseByMain(View view){
-        Intent intent = new Intent(this, AddExpenseByMain.class);
-        startActivity(intent);
-    }
-    public void addIncomeByMain(View view){
-        Intent intent = new Intent(this, AddIncomeByMain.class);
-        startActivity(intent);
+    public void goMain(View view) {
+        finish();
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_add_expense_by_main, menu);
         return true;
     }
 
