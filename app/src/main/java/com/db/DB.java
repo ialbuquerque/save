@@ -23,6 +23,13 @@ public class DB {
 
     }
 
+    public void createAccount(Account account){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("name",account.getName());
+
+        db.insert("accounts",null,contentValues);
+    }
+
     public void push(Account account){
         ContentValues values = new ContentValues(); //cria um content para enviar a requisição
         values.put("name",account.getName());
@@ -30,6 +37,7 @@ public class DB {
             values.put("name",o.getName());
             values.put("value",o.getValue());
             values.put("type_operator",o.getType());
+
             //utilizei um for para recuperar as informações do atributo List<Operator> de Account
         }
         //metodo put sai colocando o que se deseja dentro do content, aceita uma string e diversos tipos como String, double, byte, int

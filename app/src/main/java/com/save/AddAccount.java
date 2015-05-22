@@ -4,6 +4,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import com.db.DB;
+import com.domain.Account;
 
 
 public class AddAccount extends ActionBarActivity {
@@ -12,6 +17,17 @@ public class AddAccount extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
+
+        EditText editText = (EditText) findViewById(R.id.accountEditText);
+        Account account = new Account();
+        account.setName(editText.getText().toString());
+
+        DB db = new DB(this);
+        db.createAccount(account);
+    }
+
+    public void createAccount(View view){
+        finish();
     }
 
 

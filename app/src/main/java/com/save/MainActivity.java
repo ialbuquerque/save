@@ -3,9 +3,20 @@ package com.save;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.db.DB;
+import com.domain.Account;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -14,7 +25,25 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String[] accounts = new String[]{"conta 1", "conta 2", "conta 3"};
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,accounts);
+
+        ListView lv = (ListView) findViewById(R.id.lv);
+        lv.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+        lv.setAdapter(arrayAdapter);
+
     }
+
 
     public void addAccount(View view){
         Intent intent = new Intent(this, AddAccount.class);
