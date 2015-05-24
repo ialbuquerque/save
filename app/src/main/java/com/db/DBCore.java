@@ -21,13 +21,15 @@ public class DBCore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table accounts(_id integer primary key autoincrement, name text not null, type_operator text not null, value real not null);");
+        db.execSQL("create table accounts(_id integer primary key autoincrement, name text not null)");
+        db.execSQL("create table operations(_id integer primary key autoincrement, type text not null, value real not null, id_accounts integer not null, foreign key(id_accounts) references accounts(_id)");
         // sintaxe comum do sqlite para criação da tabela: id, nome, tipo do operador da conta, valor da operação
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table accounts;");
+        db.execSQL("drop table operations;");
         onCreate(db);
 
         // destroi o banco e chama onCreate para refazê-lo, futuramente colocaremos algo pra recuperar os dados

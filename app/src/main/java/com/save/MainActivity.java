@@ -26,7 +26,14 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String[] accounts = new String[]{"conta 1", "conta 2", "conta 3"};
+        DB db = new DB(this); //instanciei o bd
+        ArrayList<Account> a= new ArrayList<Account>(); //criei esse arraylist necessario para absorver os retorno do metodo db.search()
+        a=db.search(); //quero usar esse arraylist como itens do meu listview
+
+        String[] accounts = new String[]{"conta 1","conta 1","conta 1","conta 1","conta 1","conta 1"};
+
+
+
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,accounts);
 

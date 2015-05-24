@@ -4,18 +4,22 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import com.domain.Account;
 import com.domain.Operator;
 
 import java.util.ArrayList;
-import java.util.List;
+
+
+
 
 /**
  * Created by Daniel on 01/05/2015.
  */
 public class DB {
     private SQLiteDatabase db;
+    private Context a;
 
     public DB(Context context){
         DBCore auxdb = new DBCore(context);
@@ -24,25 +28,31 @@ public class DB {
     }
 
     public void createAccount(Account account){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name",account.getName());
+        try {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("name", account.getName());
 
-        db.insert("accounts",null,contentValues);
+            db.insert("accounts", null, contentValues);
+        }catch (Exception e){}
+
     }
 
-    public void push(Account account){
+    public void addOperation(Account account){
+
+
         ContentValues values = new ContentValues(); //cria um content para enviar a requisição
-        values.put("name",account.getName());
+
         for (Operator o : account.getOperators()) {
-            values.put("name",o.getName());
+
             values.put("value",o.getValue());
-            values.put("type_operator",o.getType());
+            values.put("type",o.getType());
 
             //utilizei um for para recuperar as informações do atributo List<Operator> de Account
         }
         //metodo put sai colocando o que se deseja dentro do content, aceita uma string e diversos tipos como String, double, byte, int
 
-        db.insert("accounts",null,values);
+        db.insert("operations",null,values);
+
     }
 
     public void refresh(Account account){
@@ -67,14 +77,15 @@ public class DB {
         //aqui ja fiz a where clause dentro do parametro, e o externo passei como null
 
 
+
     }
 
-    public List<Account> search() {
-        List<Account> list = new ArrayList<Account>();
+    public ArrayList<Account> search() {
+        ArrayList<Account> list = new ArrayList<Account>();
 
-        String[] columns = new String[]{ "name", "type_operator", "value"};
+        String[] columns = new String[]{"name"};
 
-        Cursor cursor = db.query("accounts", columns, null, null, null, null, "type_operator ASC");//parametros null indicam clausulas diversas, escolhi apenas order by
+        Cursor cursor = db.query("accounts", columns, null, null, null, null, "name ASC");//parametros null indicam clausulas diversas, escolhi apenas order by
 
         if (cursor.getCount() > 0) { //checa se o cursor encontrou resultados na busca e prossegue
             cursor.moveToFirst();
@@ -83,15 +94,14 @@ public class DB {
 
                 Account a = new Account();
                 a.setName(cursor.getString(0));
-                /**for (Operator o : a.getOperators()) {
-                    a.setOperators(o.setName(cursor.getString(1));
-                    a.setOperators(o.setValue(cursor.getDouble(2));
-                } Aparentemente esse for está correto em sintaxe e em lógica, mas ele está dando erro por algum motivo, por isso deixo aqui comentado.*/
+
                 list.add(a);
           }while (cursor.moveToNext());
 
         }
 
+
         return (list);
     }
+
 }
