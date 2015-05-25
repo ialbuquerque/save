@@ -29,7 +29,7 @@ public class AddAccount extends ActionBarActivity {
 
         DB db = new DB(this);
         db.createAccount(account);
-        Toast.makeText(this,"Pegou",Toast.LENGTH_LONG).show();
+        Toast.makeText(this,account.getName()+" adicionada com sucesso",Toast.LENGTH_LONG).show();
         finish();
 
 

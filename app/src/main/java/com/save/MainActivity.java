@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.db.DB;
 import com.domain.Account;
@@ -27,10 +28,16 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         DB db = new DB(this); //instanciei o bd
-        ArrayList<Account> a= new ArrayList<Account>(); //criei esse arraylist necessario para absorver os retorno do metodo db.search()
-        a=db.search(); //quero usar esse arraylist como itens do meu listview
+        String[] accounts;
+        accounts=db.search();
 
-        String[] accounts = new String[]{"conta 1","conta 1","conta 1","conta 1","conta 1","conta 1"};
+       // for (int i = 0; i < accounts.length; i++){
+        //    Toast.makeText(this,accounts[i],Toast.LENGTH_SHORT).show();
+
+        //}
+
+
+
 
 
 
