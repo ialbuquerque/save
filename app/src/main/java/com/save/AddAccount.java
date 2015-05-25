@@ -1,5 +1,6 @@
 package com.save;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,6 +31,8 @@ public class AddAccount extends ActionBarActivity {
         DB db = new DB(this);
         db.createAccount(account);
         Toast.makeText(this,account.getName()+" adicionada com sucesso",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
 
 

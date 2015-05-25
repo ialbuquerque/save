@@ -62,6 +62,7 @@ public class MainActivity extends ActionBarActivity {
     public void addAccount(View view){
         Intent intent = new Intent(this, AddAccount.class);
         startActivity(intent);
+        finish();
     }
     public  void myGoals(View view){
         Intent intent = new Intent(this, MyGoals.class);
