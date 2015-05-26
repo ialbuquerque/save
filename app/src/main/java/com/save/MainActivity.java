@@ -23,14 +23,14 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    MainSupport m = new MainSupport(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        MainSupport m = new MainSupport(this);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,m.getAccounts());
 
@@ -54,22 +54,9 @@ public class MainActivity extends ActionBarActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getBaseContext(),Operations.class);
                 startActivity(i);
-
-
-
-
-
             }
         });
     }
-
-
-
-
-
-
-
-
     public void addAccount(View view){
         Intent intent = new Intent(this, AddAccount.class);
         startActivity(intent);

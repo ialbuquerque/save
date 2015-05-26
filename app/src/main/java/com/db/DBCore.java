@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DBCore extends SQLiteOpenHelper {
     private static final String BD_NAME = "contas"; // constante criada para atribuir nome ao bd
-    private static final int BD_VERSION = 1; // constante criada para atribuir uma versão do bd
+    private static final int BD_VERSION = 2; // constante criada para atribuir uma versão do bd
 
     public DBCore(Context ctx) {
         super(ctx, BD_NAME, null, BD_VERSION); // esse construtor da classe chama a superclasse SQLiteOpenHelper, passando o ctx, nome do bd, um cursor que não vamos utilizar e a versão atual do banco para criá-lo.

@@ -34,10 +34,10 @@ public class Operations extends ActionBarActivity {
         lv.setAdapter(arrayAdapter);
 
     }
-    public void addIncome(){
+    public void addIncome(View view){
         finish();
     }
-    public void addExpense(){
+    public void addExpense(View view){
         finish();
     }
 
