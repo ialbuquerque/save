@@ -7,10 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.db.DB;
-import com.domain.Account;
+import com.util.ActivitySupport;
 
 
 public class AddAccount extends ActionBarActivity {
@@ -24,13 +22,11 @@ public class AddAccount extends ActionBarActivity {
     }
 
     public void createAccount(View view){
-        EditText editText = (EditText) findViewById(R.id.accountEditText);
-        Account account = new Account();
-        account.setName(editText.getText().toString());
+        ActivitySupport as = new ActivitySupport(this);
 
-        DB db = new DB(this);
-        db.createAccount(account);
-        Toast.makeText(this,account.getName()+" adicionada com sucesso",Toast.LENGTH_LONG).show();
+        EditText editText = (EditText) findViewById(R.id.accountEditText);
+        as.saveAccount(editText,this);
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
