@@ -53,10 +53,11 @@ public class DB {
 
                 values.put("value", o.getValue());
                 values.put("type", o.getType());
+                values.put("name",o.getName());
 
                 //utilizei um for para recuperar as informações do atributo List<Operator> de Account
             }
-            //metodo put sai colocando o que se deseja dentro do content, aceita uma string e diversos tipos como String, double, byte, int
+            //metodo put sai colocando o que se deseja dentro do content, aceita diversos tipos como String, double, byte, int
 
             db.insert("operations", null, values);
 

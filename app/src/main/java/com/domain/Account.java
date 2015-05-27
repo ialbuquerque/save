@@ -1,5 +1,6 @@
 package com.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  */
 public class Account {
     private String name;
-    private List<Operator> operators;
+    private ArrayList<Operator> operators;
 
     public String getName() {
         return name;
@@ -17,11 +18,11 @@ public class Account {
         this.name = name;
     }
 
-    public List<Operator> getOperators() {
+    public ArrayList<Operator> getOperators() {
         return operators;
     }
 
-    public void setOperators(List<Operator> operators) {
+    public void setOperators(ArrayList<Operator> operators) {
         this.operators = operators;
     }
 

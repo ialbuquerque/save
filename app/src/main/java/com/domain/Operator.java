@@ -3,9 +3,15 @@ package com.domain;
 /**
  * Created by Daniel on 01/05/2015.
  */
-public abstract class Operator {
+public  class Operator {
     private String name;
     private double value;
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String type;
 
     public String getName() {
         return name;
@@ -21,5 +27,6 @@ public abstract class Operator {
     public void setValue(double value) {
         this.value = value;
     }
-    public abstract String getType();
+    public String getType(){
+        return type; }
 }

@@ -9,6 +9,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.domain.Account;
+import com.domain.Operator;
+import com.util.OperationsAdapter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class Operations extends ActionBarActivity {
 
@@ -17,9 +24,14 @@ public class Operations extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operations);
 
-        String[]op = new String[]{"op1", "op2","op3","op4"};
+        ArrayList<Operator> op1 = new ArrayList<Operator>();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,op);
+        int layout = R.layout.operations;
+
+
+        //String[]op = new String[]{"op1", "op2","op3","op4"};
+
+       // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,op);
 
         ListView lv = (ListView) findViewById(R.id.lv);
         lv.setOnTouchListener(new View.OnTouchListener() {
@@ -31,7 +43,19 @@ public class Operations extends ActionBarActivity {
                 return false;
             }
         });
-        lv.setAdapter(arrayAdapter);
+        Account account = new Account();
+        ArrayList<Operator>operators = new ArrayList<Operator>();
+        Operator op= new Operator();
+        op.setName("nome");
+        op.setValue(20.3);
+        op.setType("tipo");
+        for (int i = 0; i <10 ; i++) {
+            operators.add(op);
+
+        }
+
+        account.setOperators(operators);
+        lv.setAdapter(new OperationsAdapter(this,account.getOperators()));
 
     }
     public void addIncome(View view){
