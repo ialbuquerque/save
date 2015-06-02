@@ -1,5 +1,6 @@
 package com.save;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.widget.ListView;
 
 import com.domain.Account;
 import com.domain.Operator;
+import com.util.ActivitySupport;
 import com.util.OperationsAdapter;
 
 import java.util.ArrayList;
@@ -18,20 +20,33 @@ import java.util.HashMap;
 
 
 public class Operations extends ActionBarActivity {
+    private String name;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operations);
-
-        ArrayList<Operator> op1 = new ArrayList<Operator>();
-
-        int layout = R.layout.operations;
+        ActivitySupport as = new ActivitySupport(this);
 
 
-        //String[]op = new String[]{"op1", "op2","op3","op4"};
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id = extras.getInt("id");
+            name = extras.getString("name");
 
-       // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,op);
+
+            if (name != null) {
+                as.getAccountClicked(id, name);
+            }
+        }
+
+
+
+
+
+
+
 
         ListView lv = (ListView) findViewById(R.id.lv);
         lv.setOnTouchListener(new View.OnTouchListener() {
@@ -43,27 +58,19 @@ public class Operations extends ActionBarActivity {
                 return false;
             }
         });
-        Account account = new Account();
-        ArrayList<Operator>operators = new ArrayList<Operator>();
-        Operator op= new Operator();
-        op.setName("nome");
-        op.setValue(20.3);
-        op.setType("tipo");
-        for (int i = 0; i <10 ; i++) {
-            operators.add(op);
+       // ArrayList<Operator> op = as.getAccountClicked(id,name).getOperators();
+        ArrayList<Operator> op = as.getAccounts().get(1).getOperators();
 
-        }
 
-        account.setOperators(operators);
-        lv.setAdapter(new OperationsAdapter(this,account.getOperators()));
+
+        lv.setAdapter(new OperationsAdapter(this,op));
 
     }
-    public void addIncome(View view){
-        finish();
+    public void addOperation(View view){
+        Intent intent = new Intent(this, AddOperation.class);
+        startActivity(intent);
     }
-    public void addExpense(View view){
-        finish();
-    }
+
 
 
     @Override

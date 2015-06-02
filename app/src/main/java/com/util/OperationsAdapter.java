@@ -7,14 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.domain.Account;
-import com.domain.Expense;
-import com.domain.Income;
 import com.domain.Operator;
 import com.save.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Daniel on 26/05/2015.
@@ -45,18 +41,24 @@ public class OperationsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Operator operator1 = new Operator();
+
+
 
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate((R.layout.operations),null);
 
-        TextView tv1 =(TextView) layout.findViewById(R.id.tv1);
-        TextView tv2 =(TextView) layout.findViewById(R.id.tv2);
-        TextView tv3 =(TextView) layout.findViewById(R.id.tv3);
-        tv1.setText(operator1.getName());
-        tv2.setText(operator1.getType());
-        tv3.setText(Double.toString(operator1.getValue()));
+        TextView tv1 =(TextView) layout.findViewById(R.id.tv_name_op);
+        TextView tv2 =(TextView) layout.findViewById(R.id.tv_type_op);
+        TextView tv3 =(TextView) layout.findViewById(R.id.tv_value_op);
+
+        tv1.setText(op.get(position).getName());
+        tv2.setText(op.get(position).getType());
+        tv3.setText(Double.toString(op.get(position).getValue()));
+
+
+
+
         return layout;
     }
 }

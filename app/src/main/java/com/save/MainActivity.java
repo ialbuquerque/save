@@ -10,11 +10,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.domain.Account;
+import com.util.AccountAdapter;
 import com.util.ActivitySupport;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
+
 
 
     @Override
@@ -24,7 +30,9 @@ public class MainActivity extends ActionBarActivity {
 
         ActivitySupport as = new ActivitySupport(this);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,as.getAccounts());
+
+
+        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,as.getAccounts());
 
         ListView lv = (ListView) findViewById(R.id.lv);
         lv.setOnTouchListener(new View.OnTouchListener() {
@@ -36,16 +44,29 @@ public class MainActivity extends ActionBarActivity {
                 return false;
             }
         });
-        lv.setAdapter(arrayAdapter);
-        lv.setOnItemClickListener(openOperations());
+        lv.setAdapter(new AccountAdapter(this,as.getAccounts()));
+
+        lv.setOnItemClickListener(openOperations(as));
+
+
 
     }
-    public AdapterView.OnItemClickListener openOperations(){
+    public AdapterView.OnItemClickListener openOperations(final ActivitySupport as ){
         return (new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(getBaseContext(),Operations.class);
-                startActivity(i);
+
+                //Toast.makeText(getApplicationContext(), a.get(position).getId(), Toast.LENGTH_SHORT).show();
+
+
+                Intent intent = new Intent(getBaseContext(), Operations.class);
+                Bundle extras = intent.getExtras();
+                extras.putInt("id", as.getAccounts().get(position).getId());
+                extras.putString("name",as.getAccounts().get(position).getName());
+
+                intent.putExtras(extras);
+
+                startActivity(intent);
             }
         });
     }
@@ -58,14 +79,8 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this, MyGoals.class);
         startActivity(intent);
     }
-    public void addExpenseByMain(View view){
-        Intent intent = new Intent(this, AddExpenseByMain.class);
-        startActivity(intent);
-    }
-    public void addIncomeByMain(View view){
-        Intent intent = new Intent(this, AddIncomeByMain.class);
-        startActivity(intent);
-    }
+
+
 
 
     @Override

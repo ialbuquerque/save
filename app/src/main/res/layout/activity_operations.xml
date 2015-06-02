@@ -25,24 +25,18 @@
             android:id="@+id/lv"
             android:layout_weight="1.04" />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Adicionar Operação"
+            android:id="@+id/bt_add_operation"
+            android:onClick="addOperation"/>
+
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="142dp"
-                android:layout_height="wrap_content"
-                android:text="Adicionar Receita"
-                android:id="@+id/bt_add_income"
-                android:onClick="addIncome"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adicionar Despesa"
-                android:id="@+id/bt_add_expense"
-                android:onClick="addExpense"/>
         </LinearLayout>
     </LinearLayout>
 

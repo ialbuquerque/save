@@ -4,8 +4,19 @@ package com.domain;
  * Created by Daniel on 01/05/2015.
  */
 public  class Operator {
+
+
+    private int id;
     private String name;
     private double value;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setType(String type) {
         this.type = type;
