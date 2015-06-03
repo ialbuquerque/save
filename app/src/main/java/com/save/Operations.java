@@ -3,12 +3,13 @@ package com.save;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.domain.Account;
 import com.domain.Operator;
@@ -16,12 +17,11 @@ import com.util.ActivitySupport;
 import com.util.OperationsAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class Operations extends ActionBarActivity {
-    private String name;
-    private int id;
+    private static final String TAG ="Operations";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +30,11 @@ public class Operations extends ActionBarActivity {
         ActivitySupport as = new ActivitySupport(this);
 
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            id = extras.getInt("id");
-            name = extras.getString("name");
+        Account account = (Account) getIntent().getSerializableExtra("account");
+        Log.d(TAG,account.getName() + " " +account.getId());
 
-
-            if (name != null) {
-                as.getAccountClicked(id, name);
-            }
-        }
-
-
-
-
-
-
+        TextView tv = (TextView) findViewById(R.id.tv);
+        tv.setText(account.getName());
 
 
         ListView lv = (ListView) findViewById(R.id.lv);
@@ -58,17 +47,34 @@ public class Operations extends ActionBarActivity {
                 return false;
             }
         });
-       // ArrayList<Operator> op = as.getAccountClicked(id,name).getOperators();
-        ArrayList<Operator> op = as.getAccounts().get(1).getOperators();
 
-
+        ArrayList<Operator> op =as.getOperations(account);
 
         lv.setAdapter(new OperationsAdapter(this,op));
 
+
     }
-    public void addOperation(View view){
-        Intent intent = new Intent(this, AddOperation.class);
+    public void addIncome(View view){
+        Account account = (Account) getIntent().getSerializableExtra("account");
+
+
+        Intent intent = new Intent(this, AddIncome.class);
+        intent.putExtra("account",account);
+
         startActivity(intent);
+    }
+    public void addExpense(View view){
+        Account account = (Account) getIntent().getSerializableExtra("account");
+
+
+        Intent intent = new Intent(this, AddExpense.class);
+        intent.putExtra("account",account);
+
+        startActivity(intent);
+
+    }
+    public void back(View view){
+        finish();
     }
 
 

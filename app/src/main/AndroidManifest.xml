@@ -21,7 +21,7 @@
             android:label="AddAcount" >
         </activity>
         <activity
-            android:name=".AddOperation"
+            android:name=".AddIncome"
             android:label="@string/title_activity_add_income_by_main" >
         </activity>
         <activity
@@ -36,7 +36,10 @@
             android:name=".Operations"
             android:label="@string/title_activity_operations" >
         </activity>
-
+        <activity
+            android:name=".AddExpense"
+            android:label="@string/title_activity_add_expense" >
+        </activity>
     </application>
 
 </manifest>

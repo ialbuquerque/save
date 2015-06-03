@@ -1,6 +1,7 @@
 package com.util;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 public class ActivitySupport {
     private Context context;
     private DB db;
+    private static final String TAG = "ActivitySupport";
 
     public ActivitySupport(Context context){
         this.db=new DB(context);
@@ -61,40 +63,52 @@ public class ActivitySupport {
 
 
     }//chama createAccount() passando o EditText definido na tela e um novo Context para permitir que o Toast seja exibido.
-    public void saveOperation(EditText et1, EditText et2, CheckBox cb1, CheckBox cb2, Context context){
+    public Account saveIncome(Account account, EditText et1, EditText et2){
         Operator operator = new Operator();
         operator.setName(et1.getText().toString());
         operator.setValue(Double.valueOf(et2.getText().toString()));
-        cb1.setActivated(true);
-        cb2.setActivated(false);
+        operator.setType("Receita");
 
-        if(cb1.isChecked()){
-            operator.setName(cb1.getText().toString());
-
-        }
-        else cb2.isChecked();{
-
-            operator.setName(cb2.getText().toString());
-        }
         ArrayList<Operator>op = new ArrayList<Operator>();
         op.add(operator);
-        Account account = new Account();
+
         account.setOperators(op);
+        Log.d(TAG,account.getName()+" "+account.getId()+" "+account.getOperators().get(0).getName());
 
         db.addOperation(account);
-        Toast.makeText(context,operator.getName(),Toast.LENGTH_LONG);
+
+
+        return account;
 
         
     }
+    public Account saveExpense(Account account,EditText et1, EditText et2){
+        Operator operator = new Operator();
+        operator.setName(et1.getText().toString());
+        operator.setValue(Double.valueOf(et2.getText().toString()));
+        operator.setType("Despesa");
+
+        ArrayList<Operator>op = new ArrayList<Operator>();
+        op.add(operator);
+
+        account.setOperators(op);
+        Log.d(TAG,account.getName()+" "+account.getId()+" "+account.getOperators().get(0).getName());
+
+        db.addOperation(account);
+
+
+        return account;
+
+    }
 
     public ArrayList<Operator> getOperations(Account account){
-        ArrayList<Operator>operators = new ArrayList<Operator>();
-        db.searchOperations();
+        ArrayList<Operator>operators =db.searchOperations(account);
+        account.setOperators(operators);
 
 
 
 
-    return(operators);}
+    return(account.getOperators());}
 
 
 

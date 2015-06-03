@@ -170,11 +170,11 @@ public class DB {
 
     }
 
-    public  ArrayList<Operator> searchOperations(){
+    public  ArrayList<Operator> searchOperations(Account account){
         ArrayList<Operator> op = new ArrayList<>();
 
 
-        String[] columns = new String[]{"_id","name","type","value"};
+        String[] columns = new String[]{"_id","name","type","value","id_accounts"};
 
         try {
 
@@ -193,12 +193,14 @@ public class DB {
                     o.setName(cursor.getString(1));
                     o.setType(cursor.getString(2));
                     o.setValue(cursor.getDouble(3));
+                    o.setId(cursor.getInt(4));
 
 
 
 
 
                     op.add(o);
+                    account.setOperators(op);
                 } while (cursor.moveToNext());
 
             }
@@ -209,7 +211,7 @@ public class DB {
         } finally {
             db.close();
         }
-        return (op);
+        return (account.getOperators());
 
     }
 

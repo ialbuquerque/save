@@ -3,14 +3,15 @@ package com.save;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
+
 
 import com.domain.Account;
 import com.util.AccountAdapter;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
+    private static final String TAG = "MainActivity";
 
 
 
@@ -31,8 +33,8 @@ public class MainActivity extends ActionBarActivity {
         ActivitySupport as = new ActivitySupport(this);
 
 
-
-        //ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,as.getAccounts());
+        TextView tv = (TextView) findViewById(R.id.tv_main);
+        tv.setText("Selecione uma conta");
 
         ListView lv = (ListView) findViewById(R.id.lv);
         lv.setOnTouchListener(new View.OnTouchListener() {
@@ -44,27 +46,28 @@ public class MainActivity extends ActionBarActivity {
                 return false;
             }
         });
-        lv.setAdapter(new AccountAdapter(this,as.getAccounts()));
+        ArrayList<Account>accounts = as.getAccounts();
+        lv.setAdapter(new AccountAdapter(this,accounts));
 
-        lv.setOnItemClickListener(openOperations(as));
+        lv.setOnItemClickListener(openOperations(accounts));
 
 
 
     }
-    public AdapterView.OnItemClickListener openOperations(final ActivitySupport as ){
+    public AdapterView.OnItemClickListener openOperations(final ArrayList<Account> accounts ){
         return (new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d(TAG,"erro "+accounts.get(position).getName());
+                Log.d(TAG,"erro "+accounts.get(position).getId());
 
                 //Toast.makeText(getApplicationContext(), a.get(position).getId(), Toast.LENGTH_SHORT).show();
 
 
                 Intent intent = new Intent(getBaseContext(), Operations.class);
-                Bundle extras = intent.getExtras();
-                extras.putInt("id", as.getAccounts().get(position).getId());
-                extras.putString("name",as.getAccounts().get(position).getName());
+                intent.putExtra("account", accounts.get(position));
 
-                intent.putExtras(extras);
+
 
                 startActivity(intent);
             }
@@ -75,10 +78,7 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
         finish();
     }
-    public  void myGoals(View view){
-        Intent intent = new Intent(this, MyGoals.class);
-        startActivity(intent);
-    }
+
 
 
 

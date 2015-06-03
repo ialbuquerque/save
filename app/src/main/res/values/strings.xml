@@ -8,4 +8,5 @@
     <string name="title_activity_add_expense_by_main">AddExpenseByMain</string>
     <string name="title_activity_my_goals">MyGoals</string>
     <string name="title_activity_operations">Operations</string>
+    <string name="title_activity_add_expense">addExpense</string>
 </resources>

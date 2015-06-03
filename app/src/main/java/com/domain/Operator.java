@@ -1,9 +1,11 @@
 package com.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by Daniel on 01/05/2015.
  */
-public  class Operator {
+public class Operator implements Serializable {
 
 
     private int id;

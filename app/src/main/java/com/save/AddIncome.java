@@ -8,29 +8,40 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.domain.Account;
 import com.util.ActivitySupport;
 
 
-public class AddOperation extends ActionBarActivity {
+public class AddIncome extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_operation);
+
+
+
+
     }
     public void saveOperation(View view){
+        Account account = (Account) getIntent().getSerializableExtra("account");
+        TextView tv = (TextView) findViewById(R.id.addOperationTitle);
+        tv.setText("Adicionar Receita");
+
         ActivitySupport as = new ActivitySupport(this);
 
         EditText et1 = (EditText) findViewById(R.id.et_name);
         EditText et2 = (EditText) findViewById(R.id.et_value);
-        CheckBox cb1 = (CheckBox) findViewById(R.id.checkBox_expense);
-        CheckBox cb2 = (CheckBox) findViewById(R.id.checkBox_income);
-        as.saveOperation(et1,et2,cb1,cb2,this);
+
+        account=as.saveIncome(account, et1, et2);
 
         Intent intent = new Intent(this, Operations.class);
+        intent.putExtra("account",account);
         startActivity(intent);
+        Toast.makeText(this, "Sua operação foi salva com sucesso", Toast.LENGTH_LONG);
         finish();
     }
 
