@@ -51,12 +51,25 @@ public class ActivitySupport {
         return (accounts);
     }//retorna o array de contas do listview
 
-    public void saveAccount(EditText editText, Context context){
+    public void saveAccount(EditText editText1,EditText editText2, Context context){
 
         Account account = new Account();
-        account.setName(editText.getText().toString());
+        account.setName(editText1.getText().toString());
 
         db.createAccount(account);
+        Operator o = new Operator();
+        o.setName("Saldo Inicial");
+        o.setValue(Double.valueOf(editText2.getText().toString()));
+        o.setType("Receita");
+
+
+        ArrayList<Operator>op = new ArrayList<Operator>();
+        op.add(o);
+        account.setOperators(op);
+        db.addOperation(account);
+        Log.d(TAG,account.getName()+" "+account.getOperators().get(0).getValue()+" "+account.getOperators().get(0).getId());
+
+
         Toast.makeText(context,account.getName()+" adicionado com sucesso",Toast.LENGTH_LONG).show();
 
 
@@ -69,10 +82,9 @@ public class ActivitySupport {
         operator.setValue(Double.valueOf(et2.getText().toString()));
         operator.setType("Receita");
 
-        ArrayList<Operator>op = new ArrayList<Operator>();
-        op.add(operator);
 
-        account.setOperators(op);
+
+        account.getOperators().add(operator);
         Log.d(TAG,account.getName()+" "+account.getId()+" "+account.getOperators().get(0).getName());
 
         db.addOperation(account);
@@ -103,7 +115,10 @@ public class ActivitySupport {
 
     public ArrayList<Operator> getOperations(Account account){
         ArrayList<Operator>operators =db.searchOperations(account);
+
         account.setOperators(operators);
+
+
 
 
 

@@ -49,6 +49,7 @@ public class Operations extends ActionBarActivity {
         });
 
         ArrayList<Operator> op =as.getOperations(account);
+        //Log.d(TAG,op.get(0).getName()+" "+op.get(0).getValue()+" "+op.get(0).getValue()+" ");
 
         lv.setAdapter(new OperationsAdapter(this,op));
 
@@ -62,6 +63,7 @@ public class Operations extends ActionBarActivity {
         intent.putExtra("account",account);
 
         startActivity(intent);
+        finish();
     }
     public void addExpense(View view){
         Account account = (Account) getIntent().getSerializableExtra("account");
@@ -71,6 +73,7 @@ public class Operations extends ActionBarActivity {
         intent.putExtra("account",account);
 
         startActivity(intent);
+        finish();
 
     }
     public void back(View view){

@@ -21,6 +21,8 @@ public class AddIncome extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_operation);
+        TextView tv = (TextView) findViewById(R.id.addOperationTitle);
+        tv.setText("Adicionar Receita");
 
 
 
@@ -28,8 +30,7 @@ public class AddIncome extends ActionBarActivity {
     }
     public void saveOperation(View view){
         Account account = (Account) getIntent().getSerializableExtra("account");
-        TextView tv = (TextView) findViewById(R.id.addOperationTitle);
-        tv.setText("Adicionar Receita");
+
 
         ActivitySupport as = new ActivitySupport(this);
 
@@ -37,11 +38,12 @@ public class AddIncome extends ActionBarActivity {
         EditText et2 = (EditText) findViewById(R.id.et_value);
 
         account=as.saveIncome(account, et1, et2);
+        Toast.makeText(this, "Sua operação foi salva com sucesso", Toast.LENGTH_LONG);
 
         Intent intent = new Intent(this, Operations.class);
         intent.putExtra("account",account);
         startActivity(intent);
-        Toast.makeText(this, "Sua operação foi salva com sucesso", Toast.LENGTH_LONG);
+
         finish();
     }
 

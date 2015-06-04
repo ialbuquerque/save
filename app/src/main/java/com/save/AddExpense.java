@@ -20,11 +20,12 @@ public class AddExpense extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_operation);
+        TextView tv = (TextView) findViewById(R.id.addOperationTitle);
+        tv.setText("Adicionar Despesa");
     }
     public void saveOperation(View view){
         Account account = (Account) getIntent().getSerializableExtra("account");
-        TextView tv = (TextView) findViewById(R.id.addOperationTitle);
-        tv.setText("Adicionar Despesa");
+
 
         ActivitySupport as = new ActivitySupport(this);
 
@@ -32,11 +33,12 @@ public class AddExpense extends ActionBarActivity {
         EditText et2 = (EditText) findViewById(R.id.et_value);
 
         account=as.saveExpense(account, et1, et2);
+        Toast.makeText(this, "Sua operação foi salva com sucesso", Toast.LENGTH_LONG);
 
         Intent intent = new Intent(this, Operations.class);
         intent.putExtra("account",account);
         startActivity(intent);
-        Toast.makeText(this, "Sua operação foi salva com sucesso", Toast.LENGTH_LONG);
+
         finish();
     }
 

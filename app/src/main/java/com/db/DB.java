@@ -173,13 +173,15 @@ public class DB {
     public  ArrayList<Operator> searchOperations(Account account){
         ArrayList<Operator> op = new ArrayList<>();
 
+        String id_accounts = Integer.toString(account.getId());
+
 
         String[] columns = new String[]{"_id","name","type","value","id_accounts"};
 
         try {
 
 
-            Cursor cursor = db.query("operations", columns, null, null, null, null,null);//parametros null indicam clausulas diversas, escolhi apenas order by
+            Cursor cursor = db.query("operations", columns,"id_accounts=?", new String[] {id_accounts},null,null,null);//parametros null indicam clausulas diversas, escolhi apenas order by
 
             if (cursor.getCount() > 0) { //checa se o cursor encontrou resultados na busca e prossegue
                 cursor.moveToFirst();
@@ -193,7 +195,7 @@ public class DB {
                     o.setName(cursor.getString(1));
                     o.setType(cursor.getString(2));
                     o.setValue(cursor.getDouble(3));
-                    o.setId(cursor.getInt(4));
+                    account.setId(cursor.getInt(4));
 
 
 

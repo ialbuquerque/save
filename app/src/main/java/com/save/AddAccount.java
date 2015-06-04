@@ -26,10 +26,12 @@ public class AddAccount extends ActionBarActivity {
 
     public void createAccount(View view){
 
-        EditText editText = (EditText) findViewById(R.id.accountEditText);
+        EditText editText1 = (EditText) findViewById(R.id.accountEditText);
+        EditText editText2 = (EditText) findViewById(R.id.balanceEditText);
+
 
         ActivitySupport as = new ActivitySupport(this);
-        as.saveAccount(editText,this);
+        as.saveAccount(editText1,editText2,this);
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
