@@ -58,8 +58,8 @@ public class MainActivity extends ActionBarActivity {
         return (new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG,"erro "+accounts.get(position).getName());
-                Log.d(TAG,"erro "+accounts.get(position).getId());
+                Log.d(TAG, accounts.get(position).getName());
+                Log.d(TAG, String.valueOf(Double.valueOf(accounts.get(position).getId())));
 
                 //Toast.makeText(getApplicationContext(), a.get(position).getId(), Toast.LENGTH_SHORT).show();
 

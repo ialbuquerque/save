@@ -29,28 +29,8 @@
         android:id="@+id/buttonCreateAccount"
         android:layout_marginTop="60dp"
         android:onClick="createAccount"
-        android:layout_below="@+id/tv_balance"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Saldo Inicial:"
-        android:id="@+id/tv_balance"
-        android:layout_below="@+id/accountEditText"
-        android:layout_alignRight="@+id/accountNameTextview"
-        android:layout_alignEnd="@+id/accountNameTextview" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/balanceEditText"
-        android:layout_alignBottom="@+id/tv_balance"
-        android:layout_toRightOf="@+id/tv_balance"
-        android:layout_toEndOf="@+id/tv_balance" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/accountEditText" />
 
 </RelativeLayout>

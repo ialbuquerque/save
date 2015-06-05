@@ -13,10 +13,6 @@ import com.domain.Operator;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
-/**
- * Created by Daniel on 01/05/2015.
- */
 public class DB {
     private SQLiteDatabase db;
 
@@ -44,7 +40,7 @@ public class DB {
     public void addOperation(Account account){
 
         try {
-            int accId= account.getId();
+            int accId = account.getId();
 
             ContentValues values = new ContentValues(); //cria um content para enviar a requisição
 
@@ -68,56 +64,6 @@ public class DB {
         finally {
             db.close();
         }
-
-    }
-
-    public String getAccountId(Account account) {
-        String id = Integer.toString(account.getId());
-        String sql ="select * from accounts where _id='"+id;
-
-        Cursor cursor = db.rawQuery(sql,null);
-        if (cursor!=null) {
-            cursor.moveToFirst();
-            //while (cursor.isAfterLast() != true) {
-            //    String accId =  cursor.getString(cursor.getColumnIndex("_id"));
-            //}
-        }
-    return cursor.getString(cursor.getColumnIndex("_id"));
-    }
-
-    public void refresh(Account account){
-
-        try {
-
-
-            ContentValues values = new ContentValues(); //cria um content para enviar a requisição
-            values.put("name", account.getName());
-            for (Operator o : account.getOperators()) {
-                values.put("name", o.getName());
-                values.put("value", o.getValue());
-                values.put("type_operator", o.getType());
-                //utilizei um for para recuperar as informações do atributo List<Operator> de Account
-            }
-            //metodo put sai colocando o que se deseja dentro do content, aceita uma string e diversos tipos como String, double, byte, int
-
-            db.update("accounts", values, "name = ?", new String[]{"" + account.getName()});
-            //o terceiro parâmetro permite que você defina as where clauses, e se colocar "?" faz com que isso seja preenchido com o conteúdo do último parâmetro
-            //O último parametro permite que se coloque where clauses externas, aqui fiz com uma string mesmo, mas poderia vir de outro lugar
-        }catch (Exception e){
-
-        }
-        finally {
-            db.close();
-        }
-
-    }
-
-    public void drop(Account account){
-        db.delete("accounts"," name = "+account.getName(),null);
-        db.close();
-        //aqui ja fiz a where clause dentro do parametro, e o externo passei como null
-
-
 
     }
 

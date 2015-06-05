@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 
 public class Operations extends ActionBarActivity {
-    private static final String TAG ="Operations";
+    private static final String TAG = "Operations";
 
 
     @Override
@@ -29,13 +29,11 @@ public class Operations extends ActionBarActivity {
         setContentView(R.layout.activity_operations);
         ActivitySupport as = new ActivitySupport(this);
 
-
         Account account = (Account) getIntent().getSerializableExtra("account");
-        Log.d(TAG,account.getName() + " " +account.getId());
+        Log.d(TAG, account.getName() + " " + account.getId());
 
         TextView tv = (TextView) findViewById(R.id.tv);
         tv.setText(account.getName());
-
 
         ListView lv = (ListView) findViewById(R.id.lv);
         lv.setOnTouchListener(new View.OnTouchListener() {
@@ -48,38 +46,51 @@ public class Operations extends ActionBarActivity {
             }
         });
 
-        ArrayList<Operator> op =as.getOperations(account);
+        ArrayList<Operator> op = as.getOperations(account);
         //Log.d(TAG,op.get(0).getName()+" "+op.get(0).getValue()+" "+op.get(0).getValue()+" ");
 
-        lv.setAdapter(new OperationsAdapter(this,op));
+        if (op == null || op.size() == 0) {
+            Operator firstOperator = new Operator();
+            firstOperator.setId(account.getId());
+            firstOperator.setType("Receita");
+            firstOperator.setValue(0);
+            firstOperator.setName("Saldo Inicial");
+
+            op.add(firstOperator);
+            account.setOperators(op);
+        }
+
+        lv.setAdapter(new OperationsAdapter(this, op));
 
 
     }
-    public void addIncome(View view){
+
+    public void addIncome(View view) {
         Account account = (Account) getIntent().getSerializableExtra("account");
 
 
         Intent intent = new Intent(this, AddIncome.class);
-        intent.putExtra("account",account);
+        intent.putExtra("account", account);
 
         startActivity(intent);
         finish();
     }
-    public void addExpense(View view){
+
+    public void addExpense(View view) {
         Account account = (Account) getIntent().getSerializableExtra("account");
 
 
         Intent intent = new Intent(this, AddExpense.class);
-        intent.putExtra("account",account);
+        intent.putExtra("account", account);
 
         startActivity(intent);
         finish();
 
     }
-    public void back(View view){
+
+    public void back(View view) {
         finish();
     }
-
 
 
     @Override
