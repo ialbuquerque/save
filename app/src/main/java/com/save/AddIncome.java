@@ -28,6 +28,7 @@ public class AddIncome extends ActionBarActivity {
     public void saveOperation(View view){
         Account account = (Account) getIntent().getSerializableExtra("account");
         ActivitySupport as = new ActivitySupport(this);
+        as.isNew = false;
 
         EditText et1 = (EditText) findViewById(R.id.et_name);
         EditText et2 = (EditText) findViewById(R.id.et_value);

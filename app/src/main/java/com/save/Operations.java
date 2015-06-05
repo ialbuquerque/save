@@ -1,11 +1,9 @@
 package com.save;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
@@ -18,16 +16,14 @@ import com.util.OperationsAdapter;
 
 import java.util.ArrayList;
 
-
 public class Operations extends ActionBarActivity {
     private static final String TAG = "Operations";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operations);
-        ActivitySupport as = new ActivitySupport(this);
+        ActivitySupport activitySupport = new ActivitySupport(this);
 
         Account account = (Account) getIntent().getSerializableExtra("account");
         Log.d(TAG, account.getName() + " " + account.getId());
@@ -46,10 +42,14 @@ public class Operations extends ActionBarActivity {
             }
         });
 
-        ArrayList<Operator> op = as.getOperations(account);
-        //Log.d(TAG,op.get(0).getName()+" "+op.get(0).getValue()+" "+op.get(0).getValue()+" ");
+        ArrayList<Operator> op = getOperators(activitySupport, account);
 
-        if (op == null || op.size() == 0) {
+    lv.setAdapter(new OperationsAdapter(this,op));
+}
+
+    private ArrayList<Operator> getOperators(ActivitySupport activitySupport, Account account) {
+        ArrayList<Operator> op = new ArrayList<>();
+        if (activitySupport.isNew) {
             Operator firstOperator = new Operator();
             firstOperator.setId(account.getId());
             firstOperator.setType("Receita");
@@ -58,9 +58,10 @@ public class Operations extends ActionBarActivity {
 
             op.add(firstOperator);
             account.setOperators(op);
+        } else {
+            op = activitySupport.getOperations(account);
         }
-
-        lv.setAdapter(new OperationsAdapter(this, op));
+        return op;
     }
 
     public void addIncome(View view) {

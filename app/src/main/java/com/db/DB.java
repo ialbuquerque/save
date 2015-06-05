@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class DB {
-    private SQLiteDatabase db;
 
+    private SQLiteDatabase db;
 
     public DB(Context context){
         DBCore auxdb = new DBCore(context);
@@ -25,16 +25,22 @@ public class DB {
 
     public void createAccount(Account account){
         try {
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("name", account.getName());
+            ContentValues accountContentValue = new ContentValues();
+            accountContentValue.put("name", account.getName());
+            db.insert("accounts", null, accountContentValue);
 
-            db.insert("accounts",null,contentValues);
+            ContentValues operationContentValue = new ContentValues();
+            Operator operator = account.getOperators().get(0);
+            operationContentValue.put("value", operator.getValue());
+            operationContentValue.put("type", operator.getType());
+            operationContentValue.put("name", operator.getName());
+            operationContentValue.put("id_accounts", account.getId());
+            db.insert("operations", null, operationContentValue);
         }catch (Exception e){}
 
         finally {
             db.close();
         }
-
     }
 
     public void addOperation(Account account){

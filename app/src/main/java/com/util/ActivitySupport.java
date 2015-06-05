@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class ActivitySupport {
     private Context context;
     private DB db;
+    public boolean isNew = true;
     private static final String TAG = "ActivitySupport";
 
     public ActivitySupport(Context context) {
@@ -33,24 +34,24 @@ public class ActivitySupport {
     public void saveAccount(EditText editText1, Context context) {
         Account account = new Account();
         account.setName(editText1.getText().toString());
-
+        account.setOperators(createInitialOperation(account));
         db.createAccount(account);
 
-        ArrayList<Operator> op = new ArrayList<>();
+        Log.d(TAG, account.getName() + " " + account.getOperators().get(0).getValue() + " " + account.getOperators().get(0).getId());
+        Toast.makeText(context, account.getName() + " adicionado com sucesso", Toast.LENGTH_LONG).show();
+    }
 
+    private ArrayList<Operator> createInitialOperation(Account account) {
+        ArrayList<Operator> op = new ArrayList<>();
         Operator firstOperator = new Operator();
+
         firstOperator.setId(account.getId());
         firstOperator.setType("Receita");
         firstOperator.setValue(0);
         firstOperator.setName("Saldo Inicial");
-
         op.add(firstOperator);
-        account.setOperators(op);
 
-        db.addOperation(account);
-
-        Log.d(TAG, account.getName() + " " + account.getOperators().get(0).getValue() + " " + account.getOperators().get(0).getId());
-        Toast.makeText(context, account.getName() + " adicionado com sucesso", Toast.LENGTH_LONG).show();
+        return op;
     }
 
     public Account saveIncome(Account account, EditText et1, EditText et2) {
