@@ -27,6 +27,7 @@ public class DB {
         try {
             ContentValues accountContentValue = new ContentValues();
             accountContentValue.put("name", account.getName());
+            accountContentValue.put("isNew", 0);
             db.insert("accounts", null, accountContentValue);
 
             ContentValues operationContentValue = new ContentValues();

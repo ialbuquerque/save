@@ -49,7 +49,7 @@ public class Operations extends ActionBarActivity {
 
     private ArrayList<Operator> getOperators(ActivitySupport activitySupport, Account account) {
         ArrayList<Operator> op = new ArrayList<>();
-        if (activitySupport.isNew) {
+        if (account.getIsNew() == 0) {
             Operator firstOperator = new Operator();
             firstOperator.setId(account.getId());
             firstOperator.setType("Receita");
@@ -58,6 +58,7 @@ public class Operations extends ActionBarActivity {
 
             op.add(firstOperator);
             account.setOperators(op);
+            account.setIsNew(1);
         } else {
             op = activitySupport.getOperations(account);
         }

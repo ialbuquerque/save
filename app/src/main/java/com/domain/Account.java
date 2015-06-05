@@ -15,6 +15,7 @@ public class Account implements Serializable {
     private int id;
     private String name;
     private ArrayList<Operator> operators;
+    private int isNew;
 
     public int getId() {
         return id;
@@ -39,6 +40,11 @@ public class Account implements Serializable {
         this.operators = operators;
     }
 
+    public int getIsNew() {
+        return isNew;
+    }
 
-
+    public void setIsNew(int isNew) {
+        this.isNew = isNew;
+    }
 }

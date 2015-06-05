@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBCore extends SQLiteOpenHelper {
     private static final String BD_NAME = "saveapp";
-    private static final int BD_VERSION = 28;
+    private static final int BD_VERSION = 34;
 
     public DBCore(Context ctx) {
         super(ctx, BD_NAME, null, BD_VERSION);
@@ -14,7 +14,7 @@ public class DBCore extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table if not exists accounts(_id integer primary key autoincrement, name text not null)");
+        db.execSQL("create table if not exists accounts(_id integer primary key autoincrement, name text not null, isNew integer not null)");
         db.execSQL("create table if not exists operations(_id integer primary key autoincrement, name text not null, type text not null, value real not null, id_accounts integer not null, foreign key(id_accounts) references accounts(_id))");
     }
 
