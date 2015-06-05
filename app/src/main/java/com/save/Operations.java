@@ -61,13 +61,10 @@ public class Operations extends ActionBarActivity {
         }
 
         lv.setAdapter(new OperationsAdapter(this, op));
-
-
     }
 
     public void addIncome(View view) {
         Account account = (Account) getIntent().getSerializableExtra("account");
-
 
         Intent intent = new Intent(this, AddIncome.class);
         intent.putExtra("account", account);
@@ -79,7 +76,6 @@ public class Operations extends ActionBarActivity {
     public void addExpense(View view) {
         Account account = (Account) getIntent().getSerializableExtra("account");
 
-
         Intent intent = new Intent(this, AddExpense.class);
         intent.putExtra("account", account);
 
@@ -90,28 +86,5 @@ public class Operations extends ActionBarActivity {
 
     public void back(View view) {
         finish();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_operations, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

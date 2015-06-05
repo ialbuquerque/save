@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.domain.Account;
 import com.util.ActivitySupport;
 
-
 public class AddExpense extends ActionBarActivity {
 
     @Override
@@ -23,9 +22,9 @@ public class AddExpense extends ActionBarActivity {
         TextView tv = (TextView) findViewById(R.id.addOperationTitle);
         tv.setText("Adicionar Despesa");
     }
+
     public void saveOperation(View view){
         Account account = (Account) getIntent().getSerializableExtra("account");
-
 
         ActivitySupport as = new ActivitySupport(this);
 
@@ -44,28 +43,5 @@ public class AddExpense extends ActionBarActivity {
 
     public void goMain(View view) {
         finish();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_expense, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

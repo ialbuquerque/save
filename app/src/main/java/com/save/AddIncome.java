@@ -23,15 +23,10 @@ public class AddIncome extends ActionBarActivity {
         setContentView(R.layout.activity_add_operation);
         TextView tv = (TextView) findViewById(R.id.addOperationTitle);
         tv.setText("Adicionar Receita");
-
-
-
-
     }
+
     public void saveOperation(View view){
         Account account = (Account) getIntent().getSerializableExtra("account");
-
-
         ActivitySupport as = new ActivitySupport(this);
 
         EditText et1 = (EditText) findViewById(R.id.et_name);
@@ -49,28 +44,5 @@ public class AddIncome extends ActionBarActivity {
 
     public void goMain(View view) {
         finish();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_income_by_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

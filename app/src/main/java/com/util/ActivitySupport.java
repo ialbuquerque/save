@@ -2,15 +2,12 @@ package com.util;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
-
 
 import com.db.DB;
 import com.domain.Account;
 import com.domain.Operator;
-import com.save.Operations;
 
 import java.util.ArrayList;
 

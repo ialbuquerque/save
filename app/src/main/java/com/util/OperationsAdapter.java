@@ -12,9 +12,6 @@ import com.save.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Daniel on 26/05/2015.
- */
 public class OperationsAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<Operator> op;
@@ -41,10 +38,6 @@ public class OperationsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-
-
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate((R.layout.operations),null);
 
@@ -55,10 +48,6 @@ public class OperationsAdapter extends BaseAdapter {
         tv1.setText(op.get(position).getName());
         tv2.setText(op.get(position).getType());
         tv3.setText(Double.toString(op.get(position).getValue()));
-
-
-
-
         return layout;
     }
 }
