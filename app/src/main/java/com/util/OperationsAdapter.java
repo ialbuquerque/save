@@ -7,16 +7,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.domain.Operator;
+import com.domain.Operation;
 import com.save.R;
 
 import java.util.ArrayList;
 
 public class OperationsAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<Operator> op;
+    private ArrayList<Operation> op;
 
-    public OperationsAdapter(Context context, ArrayList<Operator> op){
+    public OperationsAdapter(Context context, ArrayList<Operation> op){
         this.context=context;
         this.op=op;
     }

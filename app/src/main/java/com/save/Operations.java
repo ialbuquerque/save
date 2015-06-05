@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.domain.Account;
-import com.domain.Operator;
+import com.domain.Operation;
 import com.util.ActivitySupport;
 import com.util.OperationsAdapter;
 
@@ -42,22 +42,25 @@ public class Operations extends ActionBarActivity {
             }
         });
 
-        ArrayList<Operator> op = getOperators(activitySupport, account);
+        ArrayList<Operation> op = getOperators(activitySupport, account);
+
+        TextView accountBalance = (TextView) findViewById(R.id.accountBalance);
+        accountBalance.setText(String.valueOf(account.getBalance()));
 
     lv.setAdapter(new OperationsAdapter(this,op));
 }
 
-    private ArrayList<Operator> getOperators(ActivitySupport activitySupport, Account account) {
-        ArrayList<Operator> op = new ArrayList<>();
+    private ArrayList<Operation> getOperators(ActivitySupport activitySupport, Account account) {
+        ArrayList<Operation> op = new ArrayList<>();
         if (account.getIsNew() == 0) {
-            Operator firstOperator = new Operator();
-            firstOperator.setId(account.getId());
-            firstOperator.setType("Receita");
-            firstOperator.setValue(0);
-            firstOperator.setName("Saldo Inicial");
+            Operation firstOperation = new Operation();
+            firstOperation.setId(account.getId());
+            firstOperation.setType("Receita");
+            firstOperation.setValue(0);
+            firstOperation.setName("Saldo Inicial");
 
-            op.add(firstOperator);
-            account.setOperators(op);
+            op.add(firstOperation);
+            account.setOperations(op);
             account.setIsNew(1);
         } else {
             op = activitySupport.getOperations(account);

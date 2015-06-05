@@ -1,21 +1,16 @@
 package com.domain;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Created by Daniel on 01/05/2015.
- */
 public class Account implements Serializable {
 
 
     private int id;
     private String name;
-    private ArrayList<Operator> operators;
+    private ArrayList<Operation> operations;
     private int isNew;
+    private int balance;
 
     public int getId() {
         return id;
@@ -24,6 +19,7 @@ public class Account implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -32,12 +28,12 @@ public class Account implements Serializable {
         this.name = name;
     }
 
-    public ArrayList<Operator> getOperators() {
-        return operators;
+    public ArrayList<Operation> getOperations() {
+        return operations;
     }
 
-    public void setOperators(ArrayList<Operator> operators) {
-        this.operators = operators;
+    public void setOperations(ArrayList<Operation> operations) {
+        this.operations = operations;
     }
 
     public int getIsNew() {
@@ -46,5 +42,13 @@ public class Account implements Serializable {
 
     public void setIsNew(int isNew) {
         this.isNew = isNew;
+    }
+
+    public double getBalance() {
+        balance = 0;
+        for (Operation op : this.getOperations()) {
+            balance += op.getValue();
+        }
+        return balance;
     }
 }

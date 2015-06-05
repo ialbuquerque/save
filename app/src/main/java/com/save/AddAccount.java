@@ -28,6 +28,10 @@ public class AddAccount extends ActionBarActivity {
         ActivitySupport as = new ActivitySupport(this);
         as.saveAccount(editText1, this);
 
+        goMain(view);
+    }
+
+    public void goMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

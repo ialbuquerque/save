@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBCore extends SQLiteOpenHelper {
     private static final String BD_NAME = "saveapp";
-    private static final int BD_VERSION = 34;
+    private static final int BD_VERSION = 39;
 
     public DBCore(Context ctx) {
         super(ctx, BD_NAME, null, BD_VERSION);

@@ -23,7 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="243dp"
             android:id="@+id/lv"
-            android:layout_weight="1.04" />
+            android:layout_weight="0.71" />
+
+        <TextView
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/accountBalance"
+            android:layout_gravity="right"
+            android:layout_weight="0.18" />
 
         <Button
             android:layout_width="match_parent"
@@ -39,20 +46,19 @@
             android:id="@+id/bt_add_expense"
             android:onClick="addExpense"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Voltar"
-            android:id="@+id/bt_back"
-            android:layout_gravity="center_horizontal"
-            android:onClick="back"/>
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:id="@+id/bt_back"
+            android:onClick="back"/>
     </LinearLayout>
 
 </RelativeLayout>

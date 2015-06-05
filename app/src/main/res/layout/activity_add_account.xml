@@ -27,10 +27,19 @@
         android:layout_height="wrap_content"
         android:text="Criar Conta"
         android:id="@+id/buttonCreateAccount"
-        android:layout_marginTop="60dp"
         android:onClick="createAccount"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/accountEditText" />
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar"
+        android:id="@+id/bt_cancel"
+        android:onClick="goMain"
+        android:layout_alignTop="@+id/buttonCreateAccount"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
