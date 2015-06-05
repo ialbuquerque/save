@@ -42,12 +42,10 @@ public class OperationsAdapter extends BaseAdapter {
         View layout = inflater.inflate((R.layout.operations),null);
 
         TextView tv1 =(TextView) layout.findViewById(R.id.tv_name_op);
-        TextView tv2 =(TextView) layout.findViewById(R.id.tv_type_op);
-        TextView tv3 =(TextView) layout.findViewById(R.id.tv_value_op);
+        TextView tv2 =(TextView) layout.findViewById(R.id.tv_value_op);
 
         tv1.setText(op.get(position).getName());
-        tv2.setText(op.get(position).getType());
-        tv3.setText(Double.toString(op.get(position).getValue()));
+        tv2.setText(Double.toString(op.get(position).getValue()));
         return layout;
     }
 }
