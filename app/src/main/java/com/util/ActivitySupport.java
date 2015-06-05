@@ -23,15 +23,17 @@ public class ActivitySupport {
         this.db = new DB(context);
     }
 
+    //retorna o array de contas do listview
     public ArrayList<Account> getAccounts() {
-
         ArrayList<Account> accounts;
         accounts = db.searchAccounts();
+
         return (accounts);
-    }//retorna o array de contas do listview
+    }
 
+    //chama createAccount() passando o EditText definido na tela
+    //e um novo Context para permitir que o Toast seja exibido.
     public void saveAccount(EditText editText1, Context context) {
-
         Account account = new Account();
         account.setName(editText1.getText().toString());
 
@@ -52,7 +54,7 @@ public class ActivitySupport {
 
         Log.d(TAG, account.getName() + " " + account.getOperators().get(0).getValue() + " " + account.getOperators().get(0).getId());
         Toast.makeText(context, account.getName() + " adicionado com sucesso", Toast.LENGTH_LONG).show();
-    }//chama createAccount() passando o EditText definido na tela e um novo Context para permitir que o Toast seja exibido.
+    }
 
     public Account saveIncome(Account account, EditText et1, EditText et2) {
         Operator operator = new Operator();
@@ -83,7 +85,6 @@ public class ActivitySupport {
         db.addOperation(account);
 
         return account;
-
     }
 
     public ArrayList<Operator> getOperations(Account account) {

@@ -32,7 +32,6 @@ public class MainActivity extends ActionBarActivity {
 
         ActivitySupport as = new ActivitySupport(this);
 
-
         TextView tv = (TextView) findViewById(R.id.tv_main);
         tv.setText("Selecione uma conta");
 
@@ -50,10 +49,14 @@ public class MainActivity extends ActionBarActivity {
         lv.setAdapter(new AccountAdapter(this,accounts));
 
         lv.setOnItemClickListener(openOperations(accounts));
-
-
-
     }
+
+    public void addAccount(View view){
+        Intent intent = new Intent(this, AddAccount.class);
+        startActivity(intent);
+        finish();
+    }
+
     public AdapterView.OnItemClickListener openOperations(final ArrayList<Account> accounts ){
         return (new AdapterView.OnItemClickListener() {
             @Override
@@ -73,15 +76,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-    public void addAccount(View view){
-        Intent intent = new Intent(this, AddAccount.class);
-        startActivity(intent);
-        finish();
-    }
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
